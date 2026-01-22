@@ -33,11 +33,11 @@ export const APP_DEFINITIONS: Record<AppId, AppDefinition> = {
     minWidth: 500,
     minHeight: 400,
   },
-  browser: {
+    browser: {
     id: 'browser',
-    name: 'NetView',
-    icon: '◎',
-    description: 'Controlled browser',
+    name: 'Veil',
+    icon: '⟠',
+    description: 'Onion-mode browser simulator',
     defaultWidth: 1024,
     defaultHeight: 700,
     minWidth: 600,
