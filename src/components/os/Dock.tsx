@@ -4,6 +4,7 @@ import { AppId } from '@/types/wizard';
 
 const DOCK_APPS: AppId[] = [
   'terminal',
+  'browser',
   'files',
   'editor',
   'missions',
@@ -24,7 +25,6 @@ export const Dock = () => {
     const app = APP_DEFINITIONS[appId];
     
     if (app.singleton && existingWindows.length > 0) {
-      // Toggle minimize/focus for singleton apps
       const window = existingWindows[0];
       if (window.isMinimized || !window.isFocused) {
         focusWindow(window.id);
@@ -32,12 +32,10 @@ export const Dock = () => {
         minimizeWindow(window.id);
       }
     } else if (existingWindows.length > 0) {
-      // Focus the first window of this app
       const window = existingWindows[0];
       if (window.isMinimized || !window.isFocused) {
         focusWindow(window.id);
       } else {
-        // Open new instance
         openWindow(appId);
       }
     } else {
@@ -75,7 +73,6 @@ export const Dock = () => {
             >
               <span className="text-xl">{app.icon}</span>
               
-              {/* Active indicator */}
               {hasWindow && (
                 <motion.div
                   initial={{ scale: 0 }}
@@ -93,10 +90,8 @@ export const Dock = () => {
           );
         })}
 
-        {/* Separator */}
         <div className="w-px h-8 bg-border mx-1" />
 
-        {/* Minimized windows */}
         {windows.filter(w => w.isMinimized).map(window => {
           const app = APP_DEFINITIONS[window.appId as AppId];
           return (
